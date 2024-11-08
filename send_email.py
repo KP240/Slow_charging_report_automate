@@ -37,8 +37,8 @@ city_recipients = {
     'hyd': {'to': ['kartik@project-lithium.com'], 'cc': ['kartikpande12@gmail.com']},
 }
 
-# Base path for the city folders (e.g., ncr-ggn, ncr-noida, etc.)
-base_path = r"/content/cities"  # Adjust this to your actual path
+# Base path for the city folders (relative to the repository root)
+base_path = "./cities"  # Relative path in GitHub Actions environment
 
 def send_email(city, sub_city=None, to_list=None, cc_list=None, start_date=None, end_date=None):
     # Create a MIMEMultipart object to represent the email
@@ -77,6 +77,10 @@ def send_email(city, sub_city=None, to_list=None, cc_list=None, start_date=None,
     # Attach data file
     data_file = os.path.join(city_folder, f"Charging-Data-{previous_week_start_str}_to_{previous_week_end_str}.xlsx")
     image_file = os.path.join(city_folder, f"Summary-{city}{'-' + sub_city if sub_city else ''}-{previous_week_start_str}_to_{previous_week_end_str}.png")
+
+    # Log file paths for troubleshooting
+    print(f"Looking for data file at: {data_file}")
+    print(f"Looking for image file at: {image_file}")
 
     # Attach data file if it exists
     if os.path.exists(data_file):
