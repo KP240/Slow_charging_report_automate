@@ -24,12 +24,12 @@ previous_week_end_str = previous_week_end.strftime('%Y-%m-%d')
 
 # Recipient details
 city_recipients = {
-    'blr': {'to': ['kartik@project-lithium.com'], 'cc': ['kartikpande12@gmail.com']},
-    'ncr': {'to': ['kartik@project-lithium.com'], 'cc': ['kartikpande12@gmail.com'], 'sub_cities': ['ggn', 'noida']},
-    'pnq': {'to': ['kartik@project-lithium.com'], 'cc': ['kartikpande12@gmail.com']},
-    'mum': {'to': ['kartik@project-lithium.com'], 'cc': ['kartikpande12@gmail.com']},
-    'chn': {'to': ['kartik@project-lithium.com'], 'cc': ['kartikpande12@gmail.com']},
-    'hyd': {'to': ['kartik@project-lithium.com'], 'cc': ['kartikpande12@gmail.com']},
+    'blr': {'to': ['kas624988@gmail.com'], 'cc': ['kartikpande12@gmail.com']},
+    'ncr': {'to': ['kas624988@gmail.com'], 'cc': ['kartikpande12@gmail.com'], 'sub_cities': ['ggn', 'noida']},
+    'pnq': {'to': ['kas624988@gmail.com'], 'cc': ['kartikpande12@gmail.com']},
+    'mum': {'to': ['kas624988@gmail.com'], 'cc': ['kartikpande12@gmail.com']},
+    'chn': {'to': ['kas624988@gmail.com'], 'cc': ['kartikpande12@gmail.com']},
+    'hyd': {'to': ['kas624988@gmail.com'], 'cc': ['kartikpande12@gmail.com']},
 }
 
 base_path = "./cities"
