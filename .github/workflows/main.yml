@@ -2,8 +2,8 @@ name: Generate Data and Send Email Every Monday
 
 on:
   schedule:
-    # Runs at 8:00 AM UTC every Monday
-    - cron: '0 8 * * MON'
+    - cron: '0 8 * * MON'  # Runs at 8:00 AM UTC every Monday
+  workflow_dispatch:        # Allows manual trigger
 
 jobs:
   generate-and-email:
