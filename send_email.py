@@ -15,33 +15,26 @@ password = "lpolrrwyvnffyynv"
 
 # Calculate Previous Week's Dates
 today = datetime.date.today()
-start_of_week = today - datetime.timedelta(days=today.weekday())  # Monday of this week
-previous_week_end = start_of_week - datetime.timedelta(days=1)  # Sunday of last week
-previous_week_start = previous_week_end - datetime.timedelta(days=6)  # Saturday of last week
+start_of_week = today - datetime.timedelta(days=today.weekday())
+previous_week_end = start_of_week - datetime.timedelta(days=1)
+previous_week_start = previous_week_end - datetime.timedelta(days=6)
 
-# Format the previous week start and end dates
 previous_week_start_str = previous_week_start.strftime('%Y-%m-%d')
 previous_week_end_str = previous_week_end.strftime('%Y-%m-%d')
 
-# City-specific recipient groups
+# Recipient details
 city_recipients = {
     'blr': {'to': ['kartik@project-lithium.com'], 'cc': ['kartikpande12@gmail.com']},
-    'ncr': {
-        'to': ['kartik@project-lithium.com'],
-        'cc': ['kartikpande12@gmail.com'],
-        'sub_cities': ['ggn', 'noida']  # Separate folders for ggn and noida
-    },
+    'ncr': {'to': ['kartik@project-lithium.com'], 'cc': ['kartikpande12@gmail.com'], 'sub_cities': ['ggn', 'noida']},
     'pnq': {'to': ['kartik@project-lithium.com'], 'cc': ['kartikpande12@gmail.com']},
     'mum': {'to': ['kartik@project-lithium.com'], 'cc': ['kartikpande12@gmail.com']},
     'chn': {'to': ['kartik@project-lithium.com'], 'cc': ['kartikpande12@gmail.com']},
     'hyd': {'to': ['kartik@project-lithium.com'], 'cc': ['kartikpande12@gmail.com']},
 }
 
-# Base path for the city folders (relative to the repository root)
-base_path = "./cities"  # Relative path in GitHub Actions environment
+base_path = "./cities"
 
 def send_email(city, sub_city=None, to_list=None, cc_list=None, start_date=None, end_date=None):
-    # Create a MIMEMultipart object to represent the email
     msg = MIMEMultipart('related')
     msg['From'] = username
     msg['To'] = ', '.join(to_list)
@@ -51,7 +44,6 @@ def send_email(city, sub_city=None, to_list=None, cc_list=None, start_date=None,
         subject += f"-{sub_city.upper()}"
     msg['Subject'] = subject
 
-    # Email body with date range (HTML formatted)
     body_html = f"""
     <html>
         <body>
@@ -65,39 +57,32 @@ def send_email(city, sub_city=None, to_list=None, cc_list=None, start_date=None,
         </body>
     </html>
     """
-
     msg.attach(MIMEText(body_html, 'html'))
 
-    # Adjust folder path logic for separate city folders
-    if sub_city:  # Handle sub-cities like ncr-ggn, ncr-noida
-        city_folder = os.path.join(base_path, f"{city}-{sub_city}")  # e.g., ncr-ggn, ncr-noida
-    else:  # For cities without sub-cities
+    if sub_city:
+        city_folder = os.path.join(base_path, f"{city}-{sub_city}")
+    else:
         city_folder = os.path.join(base_path, city)
 
-    # Attach data file
+    # Log absolute paths for debugging
     data_file = os.path.join(city_folder, f"Charging-Data-{previous_week_start_str}_to_{previous_week_end_str}.xlsx")
     image_file = os.path.join(city_folder, f"Summary-{city}{'-' + sub_city if sub_city else ''}-{previous_week_start_str}_to_{previous_week_end_str}.png")
+    print(f"Data file path: {os.path.abspath(data_file)}")
+    print(f"Image file path: {os.path.abspath(image_file)}")
 
-    # Log file paths for troubleshooting
-    print(f"Looking for data file at: {data_file}")
-    print(f"Looking for image file at: {image_file}")
-
-    # Attach data file if it exists
     if os.path.exists(data_file):
         attach_file(msg, data_file)
     else:
         print(f"Data file for {city}{'-' + sub_city if sub_city else ''} not found at {data_file}.")
 
-    # Embed image if it exists
     if os.path.exists(image_file):
         with open(image_file, "rb") as img:
             mime_image = MIMEImage(img.read())
-            mime_image.add_header('Content-ID', f"<{city}{'-' + sub_city if sub_city else ''}_image>")  # Corrected f-string
+            mime_image.add_header('Content-ID', f"<{city}{'-' + sub_city if sub_city else ''}_image>")
             msg.attach(mime_image)
     else:
         print(f"Image file for {city}{'-' + sub_city if sub_city else ''} not found at {image_file}.")
 
-    # Convert the message to a string and send it
     with smtplib.SMTP(smtp_server, smtp_port) as server:
         server.starttls()
         server.login(username, password)
@@ -113,11 +98,9 @@ def attach_file(msg, filepath):
     attachment.add_header('Content-Disposition', f'attachment; filename={filename}')
     msg.attach(attachment)
 
-# Loop through cities and send emails
 for city, recipients in city_recipients.items():
     to_list = recipients['to']
     cc_list = recipients['cc']
-    # Check if sub_cities exist and send emails for each sub-city
     if 'sub_cities' in recipients:
         for sub_city in recipients['sub_cities']:
             send_email(city, sub_city=sub_city, to_list=to_list, cc_list=cc_list,
