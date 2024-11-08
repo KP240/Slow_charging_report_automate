@@ -2,7 +2,7 @@ name: Generate Data and Send Email Every Monday
 
 on:
   schedule:
-    - cron: '0 8 * * MON'  # Runs at 8:00 AM UTC every Monday
+    - cron: '0 4 * * MON'  # Runs at 4:00 AM UTC every Monday, which is 9:30 AM IST
   workflow_dispatch:        # Allows manual trigger
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'  # Specify your Python version if needed
+          python-version: '3.x'
 
       - name: Install dependencies
         run: |
@@ -27,4 +27,5 @@ jobs:
         run: python generate_data.py
 
       - name: Run Email Script
+        if: success()  # Only runs if the previous step was successful
         run: python send_email.py
