@@ -41,7 +41,7 @@ city_recipients = {
     },
     'pnq': {'to': ['prashant@project-lithium.com'], 'cc': ['nithya@project-lithium.com'], 'query_name': 'pnq'},
     'mum': {'to': ['parvez.shaikh@project-lithium.com'], 'cc': ['nithya@project-lithium.com'], 'query_name': 'mum'},
-    'chn': {'to': ['aravindraj@project-lithium.com'], 'cc': ['nithya@project-lithium.com'], 'query_name': 'chn'},
+    'chn': {'to': ['aravindraj@project-lithium.com'], 'cc': ['nithya@project-lithium.com','fmatli.chn@project-lithium.com'], 'query_name': 'chn'},
     'hyd': {'to': ['karan@project-lithium.com'], 'cc': ['nithya@project-lithium.com'], 'query_name': 'hyd'},
 }
 
@@ -172,7 +172,7 @@ def send_email(city, sub_city=None, to_list=None, cc_list=None):
     msg['From'] = username
     msg['To'] = ', '.join(to_list)
     msg['Cc'] = ', '.join(cc_list)
-    subject = f"{city.upper()}{'-' + sub_city.upper() if sub_city else ''} - Weekly Slow Charging Report-2024"
+    subject = f"{city.upper()}{'-' + sub_city.upper() if sub_city else ''} - Weekly Slow Charging Report-2025"
     msg['Subject'] = subject
 
     body_html = f"""
