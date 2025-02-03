@@ -33,16 +33,16 @@ previous_week_end_str = previous_week_end.strftime('%Y-%m-%d')
 # Update city_recipients to include database query names
 city_recipients = {
     'blr': {'to': ['fmat247.blr@project-lithium.com','sridhar@project-lithium.com','vasu@project-lithium.com','sridhar@project-lithium.com','fmataon.blr@project-lithium.com','Gopinath@project-lithium.com','fmatanz.blr@project-lithium.com','sathish.s@project-lithium.com','fmatgoogle.blr@project-lithium.com','fmathgs.blr@project-lithium.com','fmatkpmg.blr@project-lithium.com','sap.blr@project-lithium.com','fmatcolt.blr@project-lithium.com','fmatoptum.blr@project-lithium.com','fmatpaloalto.blr@project-lithium.com','fmatsalesforce@project-lithium.com','mukesh@project-lithium.com','fmattesco@project-lithium.com','fmatunisys.blr@project-lithium.com','fmatvmware.blr@project-lithium.com','fmatvolvo.blr@project-lithium.com','fmatwellsfargo.blr@project-lithium.com']
-            , 'cc': ['nithya@project-lithium.com','niloy@project-lithium.com'], 'query_name': 'blr'},
+            , 'cc': ['don@project-lithium.com','akhil@project-lithium.com','nithya@project-lithium.com','niloy@project-lithium.com'], 'query_name': 'blr'},
     'ncr': {
         'to': ['raju@project-lithium.com'],
-        'cc': ['nithya@project-lithium.com',],
+        'cc': ['don@project-lithium.com','akhil@project-lithium.com','nithya@project-lithium.com',],
         'sub_cities': {'ggn': 'ncr', 'noida': 'ncr'},  # Map sub-city folders to database query name
     },
-    'pnq': {'to': ['prashant@project-lithium.com'], 'cc': ['nithya@project-lithium.com'], 'query_name': 'pnq'},
-    'mum': {'to': ['parvez.shaikh@project-lithium.com'], 'cc': ['nithya@project-lithium.com'], 'query_name': 'mum'},
-    'chn': {'to': ['aravindraj@project-lithium.com'], 'cc': ['nithya@project-lithium.com','fmatli.chn@project-lithium.com'], 'query_name': 'chn'},
-    'hyd': {'to': ['karan@project-lithium.com'], 'cc': ['nithya@project-lithium.com'], 'query_name': 'hyd'},
+    'pnq': {'to': ['prashant@project-lithium.com'], 'cc': ['don@project-lithium.com','akhil@project-lithium.com','nithya@project-lithium.com'], 'query_name': 'pnq'},
+    'mum': {'to': ['parvez.shaikh@project-lithium.com'], 'cc': ['don@project-lithium.com','akhil@project-lithium.com','nithya@project-lithium.com'], 'query_name': 'mum'},
+    'chn': {'to': ['aravindraj@project-lithium.com'], 'cc': ['don@project-lithium.com','akhil@project-lithium.com','nithya@project-lithium.com','fmatli.chn@project-lithium.com'], 'query_name': 'chn'},
+    'hyd': {'to': ['karan@project-lithium.com'], 'cc': ['don@project-lithium.com','akhil@project-lithium.com','nithya@project-lithium.com'], 'query_name': 'hyd'},
 }
 
 # Base path for the city folders
