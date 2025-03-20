@@ -12,8 +12,8 @@ import psycopg2
 # SMTP Configuration
 smtp_server = "smtp.gmail.com"
 smtp_port = 587
-username = "kartik@project-lithium.com"
-password = "lpolrrwyvnffyynv"
+username = "central.noc@project-lithium.com"
+password = "tdrmyhzxzffsasox"
 
 # PostgreSQL Configuration for fetching vehicle count
 pg_host = "34.100.223.97"
@@ -184,7 +184,7 @@ def send_email(city, sub_city=None, to_list=None, cc_list=None):
         <p>Attaching the file for the detailed report. Kindly check.</p>
         <p>See the summary below:</p>
             <img src="cid:summary_image" alt="Summary Image" width="600">
-        <p>Best regards,<br>Kartik Pandey</p>
+        <p>Best regards,<br>Central Noc</p>
     </body>
 </html>
 """
